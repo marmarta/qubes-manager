@@ -37,6 +37,7 @@ from qubesadmin import Qubes
 from qubesadmin import exc
 from qubesadmin import utils
 from qubesadmin import events
+from qubesadmin.tools import qvm_start
 
 from PyQt4 import QtGui  # pylint: disable=import-error
 from PyQt4 import QtCore  # pylint: disable=import-error
@@ -855,8 +856,8 @@ class VmManagerWindow(ui_qubemanager.Ui_VmManagerWindow, QtGui.QMainWindow):
     @QtCore.pyqtSlot(name='on_action_startvm_tools_install_triggered')
     # TODO: replace with boot from device
     def action_startvm_tools_install_triggered(self):
-        # pylint: disable=invalid-name
-        pass
+        # TODO: do that with qthreads?
+        qvm_start.main(['--install-windows-tools', self.vm.name])
 
     @QtCore.pyqtSlot(name='on_action_pausevm_triggered')
     def action_pausevm_triggered(self):
